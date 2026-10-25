@@ -14,7 +14,7 @@ requirements_fedora_define_openssl()
         requirements_check openssl-devel
       fi
       ;;
-    (ruby-2.7*)
+    (ruby-2.7*|ruby-2.6*|ruby-2.5*|ruby-2.4*)
       if
         __rvm_version_compare "${_system_version}" -ge 36
       then
@@ -41,6 +41,17 @@ requirements_fedora_define_glibc()
     requirements_check glibc-headers glibc-devel
   else
     requirements_check glibc-devel
+  fi
+}
+
+requirements_fedora_define_zlib()
+{
+  if
+    __rvm_version_compare "${_system_version}" -ge 40
+  then
+    requirements_check zlib-ng-compat zlib-ng-compat-devel
+  else
+    requirements_check zlib zlib-devel
   fi
 }
 

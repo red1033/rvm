@@ -7,7 +7,7 @@
 # partial duplication marker dkjnkjvnckbjncvbkjnvkj
 # prevent from loading in sh shells
 if
-  builtin test -n "${BASH_VERSION:-}" -o -n "${ZSH_VERSION:-}" -o -n "${KSH_VERSION:-}"
+  test -n "${BASH_VERSION:-}" -o -n "${ZSH_VERSION:-}" -o -n "${KSH_VERSION:-}"
 then
   case "`uname`" in
     (CYGWIN*|MINGW*)
@@ -224,11 +224,10 @@ then
         fi
       elif
         [[ "${__path_to_ruby}" == "${rvm_path}"* ]] &&
-        [[ -z "${GEM_HOME:-}" || -z "${GEM_PATH:-}" ]]
+        [[ -z "${GEM_HOME:-}" ]]
       then
         echo "
-Warning: PATH set to RVM ruby but GEM_HOME and/or GEM_PATH not set, see:
-    https://github.com/rvm/rvm/issues/3212
+Warning: PATH set to RVM ruby but GEM_HOME not set.
 " >&2
         if
           [[ -n "${SUDO_USER:-}" ]]
